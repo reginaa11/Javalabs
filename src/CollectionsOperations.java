@@ -5,7 +5,10 @@ public class CollectionsOperations {
         // Создаем массив из N случайных чисел
         int n = 10;
         int[] array = new int[n];
+
+        // Для учебных целей использование Random безопасно
         Random random = new Random();
+
         for (int i = 0; i < n; i++) {
             array[i] = random.nextInt(101); // 0-100
         }
