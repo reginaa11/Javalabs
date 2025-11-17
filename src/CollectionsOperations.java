@@ -1,16 +1,16 @@
+import java.security.SecureRandom;
 import java.util.*;
 
 public class CollectionsOperations {
     public static void main(String[] args) {
-        // Создаем массив из N случайных чисел
         int n = 10;
         int[] array = new int[n];
 
-        // Для учебных целей использование Random безопасно
-        Random random = new Random();
+        // Используем SecureRandom для криптографической безопасности
+        SecureRandom random = new SecureRandom();
 
         for (int i = 0; i < n; i++) {
-            array[i] = random.nextInt(101); // 0-100
+            array[i] = random.nextInt(101);
         }
         System.out.println("Исходный массив: " + Arrays.toString(array));
 
