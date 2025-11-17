@@ -1,4 +1,7 @@
 package exceptions;
 
-public class CylinderException {
+public class CylinderException extends Exception {
+    public CylinderException(String message) {
+        super(message);
+    }
 }

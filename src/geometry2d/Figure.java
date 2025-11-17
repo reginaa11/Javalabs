@@ -1,4 +1,7 @@
 package geometry2d;
 
-public class Figure {
+public interface Figure {
+    double area();
+    double perimeter();
+    String toString();
 }
