@@ -6,7 +6,19 @@
 - **Язык программирования:** Java
 - **Версия Java:** 21
 
-## Описание проекта
-Учебный проект для изучения языка Java.
+## Лабораторная работа 3: Коллекции и компараторы в Java
 
-## Сборка проекта
+### Выполненные задания:
+
+1. **CollectionsOperations** - работа со статическими методами Collections
+2. **PrimesGenerator** - генератор простых чисел с Iterator
+3. **Human** - класс с Comparable и компараторами
+4. **WordFrequency** - подсчет частоты слов с HashMap
+5. **MapUtils** - метод для обмена ключей и значений в Map
+
+### Используемые технологии:
+- Java Collections Framework
+- Iterators и Comparators
+- HashSet, LinkedHashSet, TreeSet
+- HashMap
+- Git + GitHub Actions
