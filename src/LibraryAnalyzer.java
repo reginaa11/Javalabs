@@ -43,6 +43,26 @@ public class LibraryAnalyzer {
             sortedBooks.forEach(b -> System.out.println(b.getPublishingYear() + " - " + b.getName()));
             System.out.println();
 
+            // Задание 4: Проверка наличия книг Jane Austen
+            System.out.println("=== ЗАДАНИЕ 4 ===");
+            boolean hasJaneAusten = visitors.stream()
+                    .flatMap(v -> v.getFavoriteBooks().stream())
+                    .anyMatch(b -> "Jane Austen".equals(b.getAuthor()));
+
+            System.out.println("Есть ли книги Jane Austen в избранных: " + (hasJaneAusten ? "Да" : "Нет"));
+            System.out.println();
+
+            // Задание 5: Максимальное количество книг у одного посетителя
+            System.out.println("=== ЗАДАНИЕ 5 ===");
+            Optional<Integer> maxBooks = visitors.stream()
+                    .map(v -> v.getFavoriteBooks().size())
+                    .max(Integer::compareTo);
+
+            System.out.println("Максимальное количество книг у одного посетителя: " +
+                    maxBooks.orElse(0));
+            System.out.println();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
