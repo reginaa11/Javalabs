@@ -21,6 +21,28 @@ public class LibraryAnalyzer {
             System.out.println("Общее количество посетителей: " + visitors.size());
             System.out.println();
 
+            // Задание 2: Все уникальные книги
+            System.out.println("=== ЗАДАНИЕ 2 ===");
+            List<Book> allBooks = visitors.stream()
+                    .flatMap(v -> v.getFavoriteBooks().stream())
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            System.out.println("Все уникальные книги:");
+            allBooks.forEach(b -> System.out.println(b.getName() + " - " + b.getAuthor()));
+            System.out.println("Количество уникальных книг: " + allBooks.size());
+            System.out.println();
+
+            // Задание 3: Сортировка книг по году издания
+            System.out.println("=== ЗАДАНИЕ 3 ===");
+            List<Book> sortedBooks = allBooks.stream()
+                    .sorted(Comparator.comparingInt(Book::getPublishingYear))
+                    .collect(Collectors.toList());
+
+            System.out.println("Книги отсортированные по году издания:");
+            sortedBooks.forEach(b -> System.out.println(b.getPublishingYear() + " - " + b.getName()));
+            System.out.println();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
