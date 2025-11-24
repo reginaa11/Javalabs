@@ -21,6 +21,8 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+IdeaProjects.iml
+Java.iml
 
 ### VS Code ###
 .vscode/
