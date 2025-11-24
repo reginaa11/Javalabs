@@ -1,4 +1,1 @@
-package PACKAGE_NAME;
-
-public class Order {
-}
+public record Order(int id, String type, int quantity) {}
