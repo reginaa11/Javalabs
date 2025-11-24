@@ -1,0 +1,1 @@
+public record Order(int id, String type, int quantity) {}
