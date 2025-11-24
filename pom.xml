@@ -13,7 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.organization>reginaa11</sonar.organization>
-        <sonar.projectKey>regina11_Javalabs</sonar.projectKey>
+        <sonar.projectKey>reginaa11_Javalabs</sonar.projectKey>
     </properties>
 
     <dependencies>
