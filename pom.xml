@@ -12,8 +12,8 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.organization>andreevich404</sonar.organization>
-        <sonar.projectKey>andreevich404_Java</sonar.projectKey>
+        <sonar.organization>reginaa11</sonar.organization>
+        <sonar.projectKey>regina11_Javalabs</sonar.projectKey>
     </properties>
 
     <dependencies>
