@@ -1,3 +1,4 @@
+@SuppressWarnings("java:S106") // Подавляем предупреждение для всего класса
 public class Main {
 
     public static void main(String[] args) {

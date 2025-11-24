@@ -1,5 +1,5 @@
+@SuppressWarnings("java:S106") // Подавляем предупреждение для всего класса
 public class MyClass {
-
     // Публичные методы
     public void publicMethod1() {
         System.out.println("Вызван публичный метод 1");
