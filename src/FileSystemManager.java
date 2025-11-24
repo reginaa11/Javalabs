@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.Collections;
 
+@SuppressWarnings("java:S106") // Подавляем предупреждение для всего класса
 public class FileSystemManager {
 
     private final String surname;
