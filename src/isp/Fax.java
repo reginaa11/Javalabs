@@ -1,4 +1,6 @@
 package isp;
 
-public class Fax {
+
+public interface Fax {
+    void fax();
 }

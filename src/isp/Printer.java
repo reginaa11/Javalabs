@@ -1,4 +1,5 @@
 package isp;
 
-public class Printer {
+public interface Printer {
+    void print();
 }

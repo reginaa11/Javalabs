@@ -1,4 +1,5 @@
 package isp;
 
-public class Scanner {
+public interface Scanner {
+    void scan();
 }
