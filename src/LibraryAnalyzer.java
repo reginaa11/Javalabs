@@ -96,11 +96,10 @@ public class LibraryAnalyzer {
             smsMessages.forEach(sms ->
                     System.out.println(sms.getPhoneNumber() + ": " + sms.getMessage()));
 
-
-
-
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Ошибка при обработке данных: " + e.getMessage());
+            // В production коде здесь должен быть логгер
+            // logger.error("Ошибка при обработке данных", e);
         }
     }
 }
