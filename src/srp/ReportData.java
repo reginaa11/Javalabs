@@ -1,7 +1,7 @@
 package srp;
 
 public class ReportData {
-    private String data;
+    private final String data;
 
     public ReportData(String data) {
         this.data = data;

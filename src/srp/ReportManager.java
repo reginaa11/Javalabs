@@ -1,13 +1,14 @@
 package srp;
 
 public class ReportManager {
-    private final ReportData data;  // ← final
+    private final ReportData data;
 
     public ReportManager(ReportData data) {
         this.data = data;
     }
 
+    @SuppressWarnings("java:S106")
     public void generateReport() {
-        System.out.println(" Менеджер отчетов: Генерация отчета - " + data.getData());
+        System.out.println("📈 Генерация отчета: " + data.getData());
     }
 }
