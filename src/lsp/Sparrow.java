@@ -1,5 +1,8 @@
 package lsp;
 
 public class Sparrow extends FlyingBird {
-    // Sparrow может и есть, и летать - не нарушает LSP
+    @SuppressWarnings("java:S106")
+    public Sparrow() {
+        System.out.println("Создан воробей");
+    }
 }
