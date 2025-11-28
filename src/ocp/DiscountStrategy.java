@@ -1,4 +1,5 @@
 package ocp;
 
-public class DiscountStrategy {
+public interface DiscountStrategy {
+    double applyDiscount(double price);
 }
