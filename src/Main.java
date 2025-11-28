@@ -1,73 +1,74 @@
+import dip.*;
+import isp.*;
 import lsp.*;
 import ocp.*;
 import srp.*;
 
 public class Main {
+    @SuppressWarnings("java:S106")
     public static void main(String[] args) {
-        System.out.println(" ДЕМОНСТРАЦИЯ ПРИНЦИПОВ SOLID");
+        System.out.println("🚀 ДЕМОНСТРАЦИЯ ПРИНЦИПОВ SOLID");
         System.out.println("=" .repeat(50));
 
-        // Демонстрация LSP
-        System.out.println("\n ПРИНЦИП LSP (LISKOV SUBSTITUTION)");
+        // DIP демонстрация
+        System.out.println("\n🔄 ПРИНЦИП DIP (Dependency Inversion)");
         System.out.println("-".repeat(40));
 
-        Bird eagle = new Eagle();
+        MessageSender emailSender = new EmailSender();
+        NotificationService emailService = new NotificationService(emailSender);
+        emailService.sendNotification("Ваш заказ готов!");
+
+        MessageSender smsSender = new SmsSender();
+        NotificationService smsService = new NotificationService(smsSender);
+        smsService.sendNotification("Ваш код подтверждения: 123456");
+
+        // ISP демонстрация
+        System.out.println("\n🔌 ПРИНЦИП ISP (Interface Segregation)");
+        System.out.println("-".repeat(40));
+
+        Printer oldPrinter = new OldPrinter();
+        oldPrinter.print();
+
+        // LSP демонстрация
+        System.out.println("\n🦅 ПРИНЦИП LSP (Liskov Substitution)");
+        System.out.println("-".repeat(40));
+
         Bird sparrow = new Sparrow();
         Bird penguin = new Penguin();
 
-        System.out.println("Демонстрация полиморфизма:");
-        eagle.eat();
         sparrow.eat();
         penguin.eat();
 
-        System.out.println("\nДемонстрация специфического поведения:");
-        // Используем летающих птиц
-        FlyingBird flyingEagle = new Eagle();
-        FlyingBird flyingSparrow = new Sparrow();
-
-        flyingEagle.fly();
-        flyingSparrow.fly();
-
-        // Пингвин плавает вместо полета
-        Penguin swimmingPenguin = new Penguin();
-        swimmingPenguin.swim();
-
-        // Демонстрация OCP
-        System.out.println("\n ПРИНЦИП OCP (OPEN/CLOSED)");
+        // OCP демонстрация
+        System.out.println("\n💳 ПРИНЦИП OCP (Open/Closed)");
         System.out.println("-".repeat(40));
 
         DiscountCalculator calculator = new DiscountCalculator();
-        double originalPrice = 100.0;
-
-        System.out.println("Оригинальная цена: " + originalPrice + " руб.");
-        System.out.println();
+        double price = 100.0;
 
         calculator.setDiscountStrategy(new RegularDiscount());
-        System.out.println(" Обычная скидка (5%): " + calculator.calculate(originalPrice) + " руб.");
+        System.out.println("Обычная скидка: " + calculator.calculate(price));
 
         calculator.setDiscountStrategy(new VipDiscount());
-        System.out.println("VIP скидка (15%): " + calculator.calculate(originalPrice) + " руб.");
+        System.out.println("VIP скидка: " + calculator.calculate(price));
 
         calculator.setDiscountStrategy(new SuperVipDiscount());
-        System.out.println(" Super VIP скидка (25%): " + calculator.calculate(originalPrice) + " руб.");
+        System.out.println("Super VIP скидка: " + calculator.calculate(price));
 
-        // Демонстрация SRP
-        System.out.println("\n ПРИНЦИП SRP (SINGLE RESPONSIBILITY)");
+        // SRP демонстрация
+        System.out.println("\n📋 ПРИНЦИП SRP (Single Responsibility)");
         System.out.println("-".repeat(40));
 
-        ReportData reportData = new ReportData("Ежемесячный финансовый отчет за ноябрь 2024");
+        ReportData report = new ReportData("Финансовый отчет");
+        ReportManager manager = new ReportManager(report);
+        ReportPrinter printer = new ReportPrinter(report);
+        ReportSaver saver = new ReportSaver(report);
 
-        System.out.println("Каждый класс выполняет одну задачу:");
-        ReportManager manager = new ReportManager(reportData);
         manager.generateReport();
-
-        ReportPrinter printer = new ReportPrinter(reportData);
         printer.printReport();
-
-        ReportSaver saver = new ReportSaver(reportData);
         saver.saveReport();
 
         System.out.println("\n" + "=" .repeat(50));
-        System.out.println(" ДЕМОНСТРАЦИЯ ЗАВЕРШЕНА УСПЕШНО!");
+        System.out.println("✅ ДЕМОНСТРАЦИЯ ЗАВЕРШЕНА!");
     }
 }
