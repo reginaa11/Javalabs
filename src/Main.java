@@ -25,6 +25,9 @@ public class Main {
                 // Задание 4: Работа с JSON данными
                 task4(conn);
 
+                // Задание 5-6: Запросы к книгам
+                task5to6(conn);
+
             }
         } catch (Exception e) {
             System.err.println("Ошибка: " + e.getMessage());
@@ -262,6 +265,34 @@ public class Main {
             rs = stmt.executeQuery("SELECT COUNT(*) FROM books");
             if (rs.next()) {
                 System.out.println("Количество уникальных книг: " + rs.getInt(1));
+            }
+        }
+    }
+
+    private static void task5to6(Connection conn) throws SQLException {
+        System.out.println("\n=== ЗАДАНИЕ 5-6: ЗАПРОСЫ К КНИГАМ ===");
+
+        // Задание 5: Отсортированный список книг по году издания
+        System.out.println("--- Задание 5: Книги отсортированные по году издания ---");
+        String sortedBooksSQL = "SELECT name, author, publishing_year FROM books ORDER BY publishing_year";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sortedBooksSQL)) {
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("publishing_year") + " - " +
+                        rs.getString("name") + " (" + rs.getString("author") + ")");
+            }
+        }
+
+        // Задание 6: Книги младше 2000 года
+        System.out.println("\n--- Задание 6: Книги младше 2000 года ---");
+        String youngBooksSQL = "SELECT name, author, publishing_year FROM books WHERE publishing_year < 2000 ORDER BY publishing_year";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(youngBooksSQL)) {
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("publishing_year") + " - " +
+                        rs.getString("name") + " (" + rs.getString("author") + ")");
             }
         }
     }
