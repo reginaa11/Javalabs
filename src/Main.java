@@ -28,6 +28,12 @@ public class Main {
                 // Задание 5-6: Запросы к книгам
                 task5to6(conn);
 
+                // Задание 7: Добавление информации о себе
+                task7(conn);
+
+                // Задание 8: Удаление таблиц
+                task8(conn);
+
             }
         } catch (Exception e) {
             System.err.println("Ошибка: " + e.getMessage());
@@ -294,6 +300,137 @@ public class Main {
                 System.out.println(rs.getInt("publishing_year") + " - " +
                         rs.getString("name") + " (" + rs.getString("author") + ")");
             }
+        }
+    }
+
+    private static void task7(Connection conn) throws SQLException {
+        System.out.println("\n=== ЗАДАНИЕ 7: ДОБАВЛЕНИЕ ИНФОРМАЦИИ О СЕБЕ ===");
+
+        // Добавляем себя как посетителя
+        String insertMeSQL = "INSERT INTO visitors (name, surname, phone, subscribed) VALUES (?, ?, ?, ?)";
+        int myId;
+
+        try (PreparedStatement ps = conn.prepareStatement(insertMeSQL, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, "Regina");
+            ps.setString(2, "Simonenko");
+            ps.setString(3, "+79991234567");
+            ps.setBoolean(4, true);
+            ps.executeUpdate();
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    myId = rs.getInt(1);
+                    System.out.println("Добавлен посетитель: Regina Simonenko (id: " + myId + ")");
+                } else {
+                    return;
+                }
+            }
+        } catch (SQLException e) {
+            // Если уже существует, получаем ID
+            String selectVisitorSQL = "SELECT id FROM visitors WHERE name = 'Regina' AND surname = 'Simonenko'";
+            try (PreparedStatement ps = conn.prepareStatement(selectVisitorSQL);
+                 ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    myId = rs.getInt("id");
+                    System.out.println("Посетитель уже существует (id: " + myId + ")");
+                } else {
+                    return;
+                }
+            }
+        }
+
+        // Добавляем мои любимые книги
+        String[][] myBooks = {
+                {"Clean Code", "Robert Martin", "2008", "9780132350884", "Prentice Hall"},
+                {"Effective Java", "Joshua Bloch", "2018", "9780134686097", "Addison-Wesley"},
+                {"Head First Design Patterns", "Eric Freeman", "2004", "9780596007126", "O'Reilly Media"}
+        };
+
+        String insertBookSQL = "INSERT INTO books (name, author, publishing_year, isbn, publisher) VALUES (?, ?, ?, ?, ?)";
+        String linkBookSQL = "INSERT INTO visitor_books (visitor_id, book_id) VALUES (?, ?)";
+
+        for (String[] book : myBooks) {
+            int bookId;
+
+            // Добавляем книгу (или получаем ID если уже существует)
+            try (PreparedStatement ps = conn.prepareStatement(insertBookSQL, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, book[0]);
+                ps.setString(2, book[1]);
+                ps.setInt(3, Integer.parseInt(book[2]));
+                ps.setString(4, book[3]);
+                ps.setString(5, book[4]);
+                ps.executeUpdate();
+
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        bookId = rs.getInt(1);
+                        System.out.println("Добавлена книга: " + book[0]);
+                    } else {
+                        continue;
+                    }
+                }
+            } catch (SQLException e) {
+                // Книга уже существует
+                String selectBookSQL = "SELECT id FROM books WHERE name = ? AND author = ?";
+                try (PreparedStatement ps = conn.prepareStatement(selectBookSQL)) {
+                    ps.setString(1, book[0]);
+                    ps.setString(2, book[1]);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (rs.next()) {
+                            bookId = rs.getInt("id");
+                            System.out.println("Книга уже существует: " + book[0]);
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            // Связываем книгу со мной
+            try (PreparedStatement ps = conn.prepareStatement(linkBookSQL)) {
+                ps.setInt(1, myId);
+                ps.setInt(2, bookId);
+                ps.executeUpdate();
+                System.out.println("Связь создана: Regina Simonenko -> " + book[0]);
+            } catch (SQLException e) {
+                System.out.println("Связь уже существует");
+            }
+        }
+
+        // Выводим обратно информацию о себе
+        System.out.println("\n--- Мои данные и любимые книги ---");
+        String myDataSQL = """
+            SELECT v.name, v.surname, b.name as book_name, b.author, b.publishing_year 
+            FROM visitors v
+            JOIN visitor_books vb ON v.id = vb.visitor_id
+            JOIN books b ON vb.book_id = b.id
+            WHERE v.name = 'Regina' AND v.surname = 'Simonenko'
+            """;
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(myDataSQL)) {
+
+            boolean first = true;
+            while (rs.next()) {
+                if (first) {
+                    System.out.println("Посетитель: " + rs.getString("name") + " " + rs.getString("surname"));
+                    System.out.println("Любимые книги:");
+                    first = false;
+                }
+                System.out.println("  - " + rs.getString("book_name") + " (" +
+                        rs.getString("author") + ", " + rs.getInt("publishing_year") + ")");
+            }
+        }
+    }
+
+    private static void task8(Connection conn) throws SQLException {
+        System.out.println("\n=== ЗАДАНИЕ 8: УДАЛЕНИЕ ТАБЛИЦ ===");
+
+        try (Statement stmt = conn.createStatement()) {
+            stmt.execute("DROP TABLE IF EXISTS visitor_books");
+            stmt.execute("DROP TABLE IF EXISTS visitors");
+            stmt.execute("DROP TABLE IF EXISTS books");
+            System.out.println("Таблицы visitors, books, visitor_books удалены");
         }
     }
 }
