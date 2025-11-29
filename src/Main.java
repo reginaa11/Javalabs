@@ -14,11 +14,8 @@ public class Main {
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 System.out.println("Подключение к H2 установлено!\n");
 
-                // Задание 1: Работа с таблицей music
-                task1(conn);
-
-                // Задание 2: Композиции без букв m и t
-                task2(conn);
+                // Задание 1-3: Работа с таблицей music
+                task1to3(conn);
 
             }
         } catch (Exception e) {
@@ -27,8 +24,8 @@ public class Main {
         }
     }
 
-    private static void task1(Connection conn) throws SQLException {
-        System.out.println("=== ЗАДАНИЕ 1: РАБОТА С ТАБЛИЦЕЙ MUSIC ===");
+    private static void task1to3(Connection conn) throws SQLException {
+        System.out.println("=== ЗАДАНИЕ 1-3: РАБОТА С ТАБЛИЦЕЙ MUSIC ===");
 
         // Создание таблицы music по образцу из music-create.sql
         String createMusicSQL = """
@@ -85,11 +82,9 @@ public class Main {
                 System.out.println(rs.getInt("id") + ". " + rs.getString("name"));
             }
         }
-    }
 
-    private static void task2(Connection conn) throws SQLException {
-        System.out.println("\n=== ЗАДАНИЕ 2: КОМПОЗИЦИИ БЕЗ БУКВ M И T ===");
-
+        // Задание 2: Композиции без букв m и t
+        System.out.println("\n--- Задание 2: Композиции без букв m и t ---");
         String filterSQL = "SELECT * FROM music WHERE LOWER(name) NOT LIKE '%m%' AND LOWER(name) NOT LIKE '%t%'";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(filterSQL)) {
@@ -97,6 +92,21 @@ public class Main {
             while (rs.next()) {
                 System.out.println(rs.getInt("id") + ". " + rs.getString("name"));
             }
+        }
+
+        // Задание 3: Добавить любимую композицию
+        System.out.println("\n--- Задание 3: Добавление любимой композиции ---");
+        String insertSQL = "INSERT INTO music (id, name) VALUES (?, ?)";
+        String mySong = "Shape of You";
+        int newId = 21;
+
+        try (PreparedStatement ps = conn.prepareStatement(insertSQL)) {
+            ps.setInt(1, newId);
+            ps.setString(2, mySong);
+            ps.executeUpdate();
+            System.out.println("Добавлена композиция: " + mySong + " (id: " + newId + ")");
+        } catch (SQLException e) {
+            System.out.println("Композиция уже существует");
         }
     }
 }
