@@ -17,6 +17,9 @@ public class Main {
                 // Задание 1: Работа с таблицей music
                 task1(conn);
 
+                // Задание 2: Композиции без букв m и t
+                task2(conn);
+
             }
         } catch (Exception e) {
             System.err.println("Ошибка: " + e.getMessage());
@@ -77,6 +80,19 @@ public class Main {
         String selectAllSQL = "SELECT * FROM music";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(selectAllSQL)) {
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + ". " + rs.getString("name"));
+            }
+        }
+    }
+
+    private static void task2(Connection conn) throws SQLException {
+        System.out.println("\n=== ЗАДАНИЕ 2: КОМПОЗИЦИИ БЕЗ БУКВ M И T ===");
+
+        String filterSQL = "SELECT * FROM music WHERE LOWER(name) NOT LIKE '%m%' AND LOWER(name) NOT LIKE '%t%'";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(filterSQL)) {
 
             while (rs.next()) {
                 System.out.println(rs.getInt("id") + ". " + rs.getString("name"));
