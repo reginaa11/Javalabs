@@ -9,7 +9,7 @@ public class Main {
 
     private static final String URL = "jdbc:h2:mem:lab9db";
     private static final String USER = "sa";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "secure_password_123";
 
     public static void main(String[] args) {
         try {
@@ -37,7 +37,6 @@ public class Main {
             }
         } catch (Exception e) {
             System.err.println("Ошибка: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
