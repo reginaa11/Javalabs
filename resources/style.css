@@ -1,0 +1,366 @@
+/* ===== СОВРЕМЕННЫЙ МИНИМАЛИСТИЧНЫЙ ДИЗАЙН ===== */
+
+.root {
+    -fx-font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+    -fx-background-color: #fafafa;
+}
+
+/* ===== МАКЕТЫ ===== */
+AnchorPane {
+    -fx-background-color: transparent;
+}
+
+VBox, HBox, GridPane {
+    -fx-background-color: transparent;
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 0);
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+}
+
+/* ===== ТЕКСТ И ЗАГОЛОВКИ ===== */
+Label {
+    -fx-text-fill: #333333;
+}
+
+.title-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #222222;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 2, 0, 0, 1);
+}
+
+.subtitle-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #666666;
+    -fx-font-weight: 400;
+}
+
+/* ===== КНОПКИ ===== */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+    -fx-background-color: #4f46e5;
+    -fx-background-radius: 10;
+    -fx-padding: 12 24;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.2), 10, 0, 0, 3);
+    -fx-transition: all 0.2s ease;
+}
+
+.button:hover {
+    -fx-background-color: #4338ca;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 15, 0, 0, 5);
+    -fx-translate-y: -1;
+}
+
+.button:pressed {
+    -fx-background-color: #3730a3;
+    -fx-translate-y: 0;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.15), 5, 0, 0, 2);
+}
+
+.button-secondary {
+    -fx-background-color: #8b5cf6;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #7c3aed;
+}
+
+.button-danger {
+    -fx-background-color: #ef4444;
+}
+
+.button-danger:hover {
+    -fx-background-color: #dc2626;
+}
+
+.button-success {
+    -fx-background-color: #10b981;
+}
+
+.button-success:hover {
+    -fx-background-color: #059669;
+}
+
+.button-ghost {
+    -fx-background-color: transparent;
+    -fx-text-fill: #666666;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-effect: none;
+}
+
+.button-ghost:hover {
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #333333;
+    -fx-border-color: #d1d5db;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 1);
+}
+
+/* ===== ПОЛЕ ВВОДА ===== */
+.text-field {
+    -fx-font-size: 24px;
+    -fx-text-fill: #1f2937;
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0, 0, 2);
+}
+
+.text-field:focused {
+    -fx-border-color: #4f46e5;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.15), 12, 0, 0, 4);
+}
+
+/* ===== КНОПКИ КАЛЬКУЛЯТОРА ===== */
+.calc-button {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #374151;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-width: 0;
+    -fx-padding: 15 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 8, 0, 0, 2);
+    -fx-transition: all 0.15s ease;
+}
+
+.calc-button:hover {
+    -fx-background-color: #f9fafb;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 12, 0, 0, 3);
+}
+
+.calc-button:pressed {
+    -fx-background-color: #f3f4f6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 1);
+}
+
+.calc-operator {
+    -fx-text-fill: #4f46e5;
+    -fx-font-weight: 700;
+}
+
+.calc-clear {
+    -fx-text-fill: #ef4444;
+}
+
+.calc-equals {
+    -fx-background-color: #4f46e5;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.3), 12, 0, 0, 4);
+}
+
+.calc-equals:hover {
+    -fx-background-color: #4338ca;
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.4), 15, 0, 0, 5);
+}
+
+/* ===== ХОЛСТ ===== */
+.canvas {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 15, 0, 0, 4);
+}
+
+/* ===== СПЕЦИАЛЬНЫЕ КНОПКИ КАЛЬКУЛЯТОРА ===== */
+#clearButton {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+#clearButton:hover {
+    -fx-background-color: #dc2626;
+}
+
+#equalsButton {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+
+#equalsButton:hover {
+    -fx-background-color: #059669;
+}
+
+/* ===== РАЗДЕЛИТЕЛИ ===== */
+.separator {
+    -fx-background-color: #e5e7eb;
+    -fx-padding: 1 0;
+}
+
+/* ===== АНИМАЦИИ ===== */
+.fade-in {
+    -fx-opacity: 0;
+    -fx-translate-y: 10;
+}
+
+.fade-in.visible {
+    -fx-opacity: 1;
+    -fx-translate-y: 0;
+    -fx-transition: all 0.3s ease-out;
+}
+
+/* ===== СЕТКА ===== */
+GridPane {
+    -fx-background-color: transparent;
+}
+
+GridPane > .button {
+    -fx-max-width: infinity;
+    -fx-max-height: infinity;
+}
+
+/* ===== АКТИВНЫЕ ЭЛЕМЕНТЫ ===== */
+.active {
+    -fx-effect: dropshadow(gaussian, rgba(79, 70, 229, 0.2), 15, 0, 0, 5);
+    -fx-border-color: #4f46e5;
+    -fx-border-width: 2;
+}
+
+/* ===== СКРОЛЛБАР ===== */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #f3f4f6;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #d1d5db;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #9ca3af;
+}
+
+/* ===== ТУЛТИПЫ ===== */
+.tooltip {
+    -fx-background-color: white;
+    -fx-text-fill: #374151;
+    -fx-background-radius: 8;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 10 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+}
+
+/* ===== ЦВЕТОВЫЕ КЛАССЫ ДЛЯ ФИГУР ===== */
+.shape-circle {
+    -fx-background-color: linear-gradient(to bottom right, #60a5fa, #3b82f6);
+}
+
+.shape-rect {
+    -fx-background-color: linear-gradient(to bottom right, #8b5cf6, #7c3aed);
+}
+
+.shape-triangle {
+    -fx-background-color: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+/* ===== ШАДОВЫЕ ЭФФЕКТЫ ===== */
+.shadow-sm {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 1);
+}
+
+.shadow-md {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 3);
+}
+
+.shadow-lg {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 15, 0, 0, 5);
+}
+
+/* ===== ЗАКРУГЛЕННЫЕ УГЛЫ ===== */
+.rounded-sm {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.rounded-md {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+}
+
+.rounded-lg {
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+}
+
+/* ===== ГРАДИЕНТНЫЕ ФОНЫ ===== */
+.gradient-primary {
+    -fx-background-color: linear-gradient(to bottom right, #4f46e5, #7c3aed);
+}
+
+.gradient-success {
+    -fx-background-color: linear-gradient(to bottom right, #10b981, #34d399);
+}
+
+.gradient-warning {
+    -fx-background-color: linear-gradient(to bottom right, #f59e0b, #fbbf24);
+}
+
+.gradient-danger {
+    -fx-background-color: linear-gradient(to bottom right, #ef4444, #f87171);
+}
+
+/* ===== ТЕМНАЯ ТЕМА (ДЛЯ БУДУЩЕГО) ===== */
+.dark-theme .root {
+    -fx-background-color: #111827;
+}
+
+.dark-theme .card {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+}
+
+.dark-theme .button {
+    -fx-background-color: #4f46e5;
+}
+
+.dark-theme .button-ghost {
+    -fx-text-fill: #d1d5db;
+    -fx-border-color: #4b5563;
+}
+
+.dark-theme .text-field {
+    -fx-background-color: #1f2937;
+    -fx-text-fill: #f9fafb;
+    -fx-border-color: #4b5563;
+}
+
+/* ===== ОТЗЫВЧИВОСТЬ ===== */
+@media (max-width: 768px) {
+    .button {
+        -fx-padding: 10 20;
+        -fx-font-size: 13px;
+    }
+
+    .text-field {
+        -fx-font-size: 20px;
+        -fx-padding: 12;
+    }
+}

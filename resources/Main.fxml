@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/"
+            fx:controller="controller.MainMenuController"
+            stylesheets="@/style.css"
+            styleClass="gradient-primary">
+
+    <children>
+        <VBox spacing="20" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="50"
+              AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="50"
+              alignment="CENTER"
+              styleClass="card shadow-lg">
+
+            <Label text="Выберите задание"
+                   styleClass="title-label shadow-sm"/>
+
+            <Button text="Задание 1: Калькулятор"
+                    onAction="#openCalculator"
+                    styleClass="button button-success shadow-md"
+                    style="-fx-pref-width: 300;"/>
+
+            <Button text="Задание 2: Геометрические фигуры"
+                    onAction="#openShapes"
+                    styleClass="button button-secondary shadow-md"
+                    style="-fx-pref-width: 300;"/>
+
+            <Separator styleClass="separator" prefWidth="200"/>
+
+            <Button text="Выход"
+                    onAction="#exitApp"
+                    styleClass="button button-ghost"
+                    style="-fx-pref-width: 200;"/>
+        </VBox>
+    </children>
+</AnchorPane>
